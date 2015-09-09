@@ -22,13 +22,19 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSMainNibFile</key>
+	<string>LaunchScreen</string>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>UIMainStoryboardFile</key>
-	<string>Main</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
+	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Lobster 1.4.otf</string>
+		<string>FZLTZCHJW--GB1-0.TTF</string>
+		<string>FZLTXIHJW--GB1-0.TTF</string>
 	</array>
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
