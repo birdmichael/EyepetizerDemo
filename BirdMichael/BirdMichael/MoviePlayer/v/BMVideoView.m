@@ -270,20 +270,6 @@
 
 #pragma mark - AutoLayout setup
 
--(void) setupToolsHudConstraints
-{
-//    // 中间标题
-//    CGFloat titleLabelW = [self.video.title sizeWithFont:_centerTitleLabel.font].width;
-//    CGFloat titleLabelH = [self.video.title sizeWithFont:_centerTitleLabel.font].height;
-//    CGFloat titleLabelX = (self.bgView.width - centerTitleLabelW) / 2;
-//    CGFloat titleLabelY = (self.bgView.height / 2)  - centerTitleLabelH;
-//    _titleLabel.frame = CGRectMake(titleLabelX, titleLabelY, titleLabelW, titleLabelH);
-    
-    
-    // 类型及时长
-//    _pageBackButton.centerY = _toolsHudView.centerY;
-    
-}
 
 -(void) setupConstraints {
     
@@ -696,7 +682,7 @@
     if (titleName){
     _titleName = titleName;
     self.titleLabel.text = titleName;
-    [self setNeedsDisplay];
+//    [self setNeedsDisplay];
     }
 }
 @end

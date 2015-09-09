@@ -14,7 +14,6 @@
 		7BD445401BA034FD0076D179 /* BirdMichaelTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD4453F1BA034FD0076D179 /* BirdMichaelTests.m */; };
 		7BD448501BA039EA0076D179 /* BMVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447B21BA039E90076D179 /* BMVideoPlayerViewController.m */; };
 		7BD448511BA039EA0076D179 /* BMVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447B61BA039E90076D179 /* BMVideoView.m */; };
-		7BD448521BA039EA0076D179 /* MoviewPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447B81BA039E90076D179 /* MoviewPlayer.m */; };
 		7BD448531BA039EA0076D179 /* PlayerSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447BA1BA039E90076D179 /* PlayerSlider.m */; };
 		7BD448541BA039EA0076D179 /* PlayerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7BD447BB1BA039E90076D179 /* PlayerView.bundle */; };
 		7BD448551BA039EA0076D179 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447BE1BA039E90076D179 /* AppDelegate.m */; };
@@ -130,8 +129,6 @@
 		7BD447B21BA039E90076D179 /* BMVideoPlayerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVideoPlayerViewController.m; sourceTree = "<group>"; };
 		7BD447B51BA039E90076D179 /* BMVideoView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BMVideoView.h; sourceTree = "<group>"; };
 		7BD447B61BA039E90076D179 /* BMVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVideoView.m; sourceTree = "<group>"; };
-		7BD447B71BA039E90076D179 /* MoviewPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviewPlayer.h; sourceTree = "<group>"; };
-		7BD447B81BA039E90076D179 /* MoviewPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviewPlayer.m; sourceTree = "<group>"; };
 		7BD447B91BA039E90076D179 /* PlayerSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSlider.h; sourceTree = "<group>"; };
 		7BD447BA1BA039E90076D179 /* PlayerSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSlider.m; sourceTree = "<group>"; };
 		7BD447BB1BA039E90076D179 /* PlayerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PlayerView.bundle; sourceTree = "<group>"; };
@@ -421,8 +418,6 @@
 			children = (
 				7BD447B51BA039E90076D179 /* BMVideoView.h */,
 				7BD447B61BA039E90076D179 /* BMVideoView.m */,
-				7BD447B71BA039E90076D179 /* MoviewPlayer.h */,
-				7BD447B81BA039E90076D179 /* MoviewPlayer.m */,
 				7BD447B91BA039E90076D179 /* PlayerSlider.h */,
 				7BD447BA1BA039E90076D179 /* PlayerSlider.m */,
 				7BD447BB1BA039E90076D179 /* PlayerView.bundle */,
@@ -920,7 +915,6 @@
 				7BD448821BA039EA0076D179 /* MJRefreshConst.m in Sources */,
 				7BD4486D1BA039EA0076D179 /* MJPropertyType.m in Sources */,
 				7BD448D91BA039FC0076D179 /* UIView+ConstraintHelper.m in Sources */,
-				7BD448521BA039EA0076D179 /* MoviewPlayer.m in Sources */,
 				7BD448631BA039EA0076D179 /* DTTimePeriodCollection.m in Sources */,
 				7BD448591BA039EA0076D179 /* AFNetworkReachabilityManager.m in Sources */,
 				7BD448871BA039EA0076D179 /* NSData+ImageContentType.m in Sources */,

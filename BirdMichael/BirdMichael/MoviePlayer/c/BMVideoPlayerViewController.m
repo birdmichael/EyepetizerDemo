@@ -24,7 +24,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor blackColor];
+    self.view.backgroundColor = [UIColor whiteColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     Play *play = [self.video.playInfo firstObject];
     [self preparePlayerWithURL:[NSURL URLWithString:play.url]];
@@ -55,7 +55,6 @@
     UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
     [activityView startAnimating];
     activityView.translatesAutoresizingMaskIntoConstraints = NO;
-//    activityView
     [self.view addSubview:activityView];
     [activityView centerInSuperview];
     

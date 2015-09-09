@@ -19,7 +19,6 @@
 #import "NSDate+DateTools.h"
 
 #import "Video.h"
-#import "MoviewPlayer.h"
 #import "BMVideoPlayerViewController.h"
 
 @interface HomeTableViewController()
