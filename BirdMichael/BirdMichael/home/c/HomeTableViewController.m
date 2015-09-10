@@ -11,18 +11,20 @@
 #import "VideoTableViewCell.h"
 #import "MJRefresh.h"
 #import "HttpTools.h"
+#import "Page.h"
 #import "Daily.h"
 #import "MBProgressHUD+BM.h"
 #import "MJExtension.h"
 #import "Header.h"
 #import "VideoTableHeaderView.h"
 #import "NSDate+DateTools.h"
+#import "NSString+FormatterDate.h"
 
 #import "Video.h"
 #import "BMVideoPlayerViewController.h"
 
 @interface HomeTableViewController()
-@property (nonatomic, strong) NSMutableArray *dailys;
+@property (nonatomic, strong) NSMutableArray *daliyList;
 @end
 @implementation HomeTableViewController
 
@@ -60,62 +62,42 @@
  */
 - (void)headerWithRefreshingDate:(MJRefreshComponent *)refresh
 {
-    Daily *d           = [[Daily alloc]init];
-    NSDate *date       = [NSDate date];
-
-    NSTimeZone *zone   = [NSTimeZone systemTimeZone];
-
-    NSInteger interval = [zone secondsFromGMTForDate: date];
-
-    NSDate *localDate  = [date  dateByAddingTimeInterval: interval];
-    
-
-    [HttpTools GET:d.toPath parameters:[d toParameterWith:localDate] success:^(id json) {
+    __weak typeof(self) weakSelf = self;
+    [HttpTools GET:[Page toPath] parameters:[Page toParameterWith:[NSDate date]] success:^(id json) {
         // 获取数据
-        NSArray * jsonArrary = [[NSArray alloc]init];
-        jsonArrary = json[@"dailyList"];
-        NSMutableArray *arrary = [NSMutableArray array];
-        for (int i = 0; i < jsonArrary.count; i++) {
-            Daily *daily = [Daily objectWithKeyValues:jsonArrary[i]];
-            
-            [arrary addObject:daily];
-        }
-        self.dailys = arrary;
+        Page *page = [Page objectWithKeyValues:json];
+        
+        // 判断是否当天刷新   不是当天,不添加数据,若为节约流量可再前面直接跳出
+        Daily *daliy =  [self.daliyList firstObject];
+        NSString *dateString = [[NSDate date] formattedDateWithFormat:@"YYYYMMdd"];
+        if (![daliy.date.formatterDateToYYMMDDToDay isEqualToString:dateString]) {
+        NSIndexSet *indexSet = [[NSIndexSet alloc] initWithIndexesInRange:NSMakeRange(0, page.dailyList.count)];
+        [weakSelf.daliyList insertObjects:page.dailyList atIndexes:indexSet];
+        };
+    
         // 刷新表格
-        [self.tableView reloadData];
+        [weakSelf.tableView reloadData];
         // 结束刷新
-        [self.tableView.header endRefreshing];
-        NSLog(@"%@", NSStringFromCGRect(self.tableView.frame));
+        [weakSelf.tableView.header endRefreshing];
     } failure:^(NSError *error) {
         [MBProgressHUD showError:@"请求失败"];
-        [self.tableView.header endRefreshing];
+        [weakSelf.tableView.header endRefreshing];
     }];
 }
 
-/**
- *  上拉加载更多
- */
+///**
+// *  上拉加载更多
+// */
 - (void)footerWithRefreshingMore:(MJRefreshComponent *)refresh
 {
-    Daily *daliy = [self.dailys lastObject];
-    NSMutableDictionary *dict = (NSMutableDictionary *)[daliy toParameterWith:nil];
-    NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:[daliy.date longLongValue]/1000];
-    // 设置日期格式
-    NSDate *lastDate =[currentDate dateBySubtractingDays:1];
-    NSDateFormatter *dateFormatter =[[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"YYYYMMdd"];
-    NSString *dateString = [dateFormatter stringFromDate:lastDate];
-
-    dict[@"date"] = dateString;
-    [HttpTools GET:daliy.toPath parameters:dict success:^(id json) {
+    Daily *Lastdaliy = [self.daliyList lastObject];
+    __weak typeof(self) weakSelf = self;
+    [HttpTools GET:[Page toPath] parameters:[Page toParameterWithSrt:Lastdaliy.date.formatterDateToYYMMDDToYestday] success:^(id json) {
         // 获取数据
-        NSArray * jsonArrary = [[NSArray alloc]init];
-        jsonArrary = json[@"dailyList"];
-        for (int i = 0; i < jsonArrary.count; i++) {
-            Daily *daily = [Daily objectWithKeyValues:jsonArrary[i]];
-            
-            [_dailys addObject:daily];
-        }
+        Page *page = [Page objectWithKeyValues:json];
+        [weakSelf.daliyList addObjectsFromArray:page.dailyList];
+        // 刷新表格
+        [self.tableView reloadData];
 
         // 刷新表格
         [self.tableView reloadData];
@@ -149,13 +131,13 @@
 #pragma mark 数据源方法
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return self.dailys.count;
+    return self.daliyList.count;
     
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    Daily *daily = self.dailys[section];
+    Daily *daily = self.daliyList[section];
     return daily.videoList.count;
 }
 
@@ -165,7 +147,7 @@
     VideoTableViewCell *cell = [VideoTableViewCell cellWithTableView:tableView];
 
     // 传递模型
-    Daily *daliy             = self.dailys[indexPath.section];
+    Daily *daliy             = self.daliyList[indexPath.section];
     Video *video             = daliy.videoList[indexPath.row];
     cell.video               = video;
     
@@ -187,7 +169,7 @@
 {
     // 传入时间数据
     VideoTableHeaderView *headerView = [[VideoTableHeaderView alloc]init];
-    Daily *daliy = self.dailys[section];
+    Daily *daliy = self.daliyList[section];
     headerView.date = daliy.date;
     return headerView;
 }
@@ -206,7 +188,7 @@
     // 创建控制器
     BMVideoPlayerViewController *Vc = [[BMVideoPlayerViewController alloc]init];
     // 传递模型
-    Daily *daliy = self.dailys[indexPath.section];
+    Daily *daliy = self.daliyList[indexPath.section];
     Video *video = daliy.videoList[indexPath.row];
     Vc.video = video;
     
@@ -216,12 +198,12 @@
 
 #pragma mark 懒加载
 
--(NSMutableArray *)dailys
+-(NSMutableArray *)daliyList
 {
-    if(!_dailys){
-        _dailys = [[NSMutableArray alloc]init];
+    if(!_daliyList){
+        _daliyList = [[NSMutableArray alloc]init];
     }
-    return _dailys;
+    return _daliyList;
 }
 
 @end

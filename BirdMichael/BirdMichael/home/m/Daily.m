@@ -17,24 +17,20 @@
              };
 }
 
+/**
+ *  	请求路径
+ */
 - (NSString *)toPath
 {
-    return @"http://baobab.wandoujia.com/api/v1/feed?";
+    return nil;
 }
 
-- (NSDictionary *)toParameterWith:(NSDate *)date;
+/**
+ *  	请求参数
+ */
+- (NSDictionary *)toParameterWith:(NSDate *)date
 {
-    NSMutableDictionary *Parameter = [NSMutableDictionary dictionary];
-    Parameter[@"num"] = @"10";
-    if (!date) {
-        Parameter[@"date"] = @"20150902";
-        return Parameter;
-    }
-
-    // 设置日期格式
-    NSString *dateString = [date formattedDateWithFormat:@"YYYYMMdd"];
-    Parameter[@"date"] = dateString;
-    return Parameter;
+    return nil;
 }
 
 @end

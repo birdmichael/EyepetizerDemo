@@ -8,9 +8,9 @@
 
 #import "VideoTableHeaderView.h"
 #import "Header.h"
-#import "NSDate+DateTools.h"
 #import "UIView+XYWH.h"
 #import "NSString+SizeWithString.h"
+#import "NSString+FormatterDate.h"
 
 @interface VideoTableHeaderView()
 @property (nonatomic ,weak) UILabel *dateLabel;
@@ -44,7 +44,7 @@
 - (void)layoutSubviews
 {
     [super layoutSubviews];
-    _dateLabel.size = [[self formatterDate:_date] sizeWithFont:Font_EnglishFont(15)];
+    _dateLabel.size = [[self.date formatterDateToMMMdd] sizeWithFont:Font_EnglishFont(15)];
     _dateLabel.height += 6; // 避免边框与文字重叠,高度在文字宽度基础上添加6
 
     _dateLabel.y = 5; //  向下偏移量
@@ -59,18 +59,11 @@
         return;
     }
     _date = date;
-    _dateLabel.text = [self formatterDate:date];
+    _dateLabel.text = date.formatterDateToMMMdd;
     
 }
 
-/**x
- *  格式工具
- */
-- (NSString *)formatterDate:(NSString *)date {
-    NSDate *currentDate = [NSDate dateWithTimeIntervalSince1970:[date doubleValue]/1000.0];
-    NSString *dateString = [currentDate formattedDateWithFormat:@" - MMM. dd - " locale:[NSLocale localeWithLocaleIdentifier:@"en_US"]];
-    return dateString;
-}
+
 
 
 

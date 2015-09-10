@@ -2,8 +2,9 @@ Welcome to BirdMichael
 ===================
 
 
+Hello!This is the first open-sorce product by myself,so I called this file as **BirdMichael**— my own English  name.
 
-你好,这个我小弟的第一个开源产品,所以文件就以自己名字命名了**BirdMichael**..
+
 
 ----------
 使用的第三方框架:

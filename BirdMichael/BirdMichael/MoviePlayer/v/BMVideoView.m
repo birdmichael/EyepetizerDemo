@@ -113,11 +113,7 @@
     return self;
 }
 
--(void)dealloc {
-    
-    [self.moviePlayer removeTimeObserver:self.playbackObserver];
-    [self unregisterObservers];
-}
+
 
 #pragma mark - 播放器初始化方法
 
@@ -684,5 +680,19 @@
     self.titleLabel.text = titleName;
 //    [self setNeedsDisplay];
     }
+}
+
+#pragma mark - 销毁.
+
+-(void)dealloc {
+    
+    [self.moviePlayer removeTimeObserver:self.playbackObserver];
+    [self unregisterObservers];
+    
+    self.playerItem = nil;
+    self.playerLayer= nil;
+    self.activityIndicator= nil;
+    self.playbackObserver= nil;
+    
 }
 @end
