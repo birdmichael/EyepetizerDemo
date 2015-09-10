@@ -22,7 +22,7 @@ Using the third party framework:
  Screenshot
 -------------
 
-![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/IMG_0465.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/IMG_0466.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-1.png)
+![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/IMG_0465.jpg)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/IMG_0466.jpg)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-1.png)
 
 Continue to update....
 
