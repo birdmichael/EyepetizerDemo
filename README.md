@@ -3,10 +3,12 @@ Welcome to BirdMichael
 
 
 
-你好,这个我小弟的第一个开源产品,所以文件就以自己名字命名了**BirdMichael**..
+Hello!This is the first open-sorce product by myself,so I called this file as **BirdMichael**— my own English  name...
+
+It is easy to learn a program language,but it is difficult to proficient.The challenge is to understand the essence of it.There are many developers interested in the latest technology.Maube,they are fond of NOSQL today,but they may pay their attention to the Html 5 tomorrow,speaking clearly and logically
 
 ----------
-使用的第三方框架:
+Using the third party framework:
 
 
  - AFNetworking
@@ -17,12 +19,12 @@ Welcome to BirdMichael
  - SDWebImage
  - 备注:部分框架已优化或扩展
 
- 截图
+ Screenshot
 -------------
 
-![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-2.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-3.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-4.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-5.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-1.png)
+![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/IMG_0465.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/IMG_0466.png)![enter image description here](http://birdmichael.com/wp-content/uploads/2015/09/QQ20150909-1.png)
 
-持续更新中...
+Continue to update....
 
 
 
