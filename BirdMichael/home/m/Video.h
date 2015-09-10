@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+@class Categorie;
 @interface Video : NSObject
 /**
  *  	string	标题。
@@ -33,4 +34,16 @@
  */
 @property (nonatomic, assign) NSInteger          duration;
 
+
+
+#pragma mark 请求参数
+/**
+ *  	请求路径
+ */
++ (NSString *)toPathFromCategorie;
+
+/**
+ *  	请求参数
+ */
++ (NSDictionary *)toParameterFromCategorie:(Categorie *)categorie WithController:(id)controller Withlength:(NSUInteger)length;
 @end

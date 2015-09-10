@@ -17,20 +17,5 @@
              };
 }
 
-/**
- *  	请求路径
- */
-- (NSString *)toPath
-{
-    return nil;
-}
-
-/**
- *  	请求参数
- */
-- (NSDictionary *)toParameterWith:(NSDate *)date
-{
-    return nil;
-}
 
 @end

@@ -12,6 +12,7 @@
 #import "Categorie.h"
 #import "MBProgressHUD+BM.h"
 #import "MJExtension.h"
+#import "CategoriesTimeViewController.h"
 #import "CatgorieCollectionViewCell.h"
 @interface CategoriesCollectionViewController()
 @property (nonatomic ,strong) NSArray *categories;
@@ -98,6 +99,7 @@
     [titleView setBounds:CGRectMake(0, 0, title.size.width, title.size.height)];
     self.navigationItem.titleView = titleView;
     
+    
 }
 #pragma mark -- UICollectionViewDataSource
 
@@ -124,7 +126,12 @@
 #pragma mark -- UICollectionView代理方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"%d",indexPath.row);
+    CategoriesTimeViewController *vc = [[CategoriesTimeViewController alloc]init];
+    vc.categorie = self.categories[indexPath.row];
+    [self.navigationController pushViewController:vc animated:YES];
+    
+    
+    
 }
 #pragma mark -- 懒加载
 -(NSArray *)categories

@@ -49,7 +49,7 @@
 {
     // 添加下拉刷新
     self.tableView.header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerWithRefreshingDate:)];
-    // 添加下拉刷新
+    // 添加上拉刷新
     MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
     footer.appearencePercentTriggerAutoRefresh = -5;
     self.tableView.footer = footer;
@@ -99,8 +99,6 @@
         // 刷新表格
         [self.tableView reloadData];
 
-        // 刷新表格
-        [self.tableView reloadData];
         // 结束刷新
         [self.tableView.footer endRefreshing];
     } failure:^(NSError *error) {

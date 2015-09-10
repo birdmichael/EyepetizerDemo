@@ -7,7 +7,5 @@
 //
 
 #import <UIKit/UIKit.h>
-
 @interface CategoriesCollectionViewController : UICollectionViewController <UICollectionViewDataSource,UICollectionViewDelegate>
-
 @end

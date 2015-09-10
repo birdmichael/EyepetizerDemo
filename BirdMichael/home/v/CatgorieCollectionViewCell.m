@@ -111,6 +111,7 @@
     _centerTitleLabel.frame = CGRectMake(centerTitleLabelX, centerTitleLabelY, centerTitleLabelW, centerTitleLabelH);
 }
 
+#pragma mark - 数据相关
 /**
  *  赋值
  */
@@ -124,6 +125,10 @@
     // 中间标题
     self.centerTitleLabel.text = [self formatterStr:categorie.name];
 }
+
+
+
+#pragma mark - 数据相关
 /**x
  *  格式工具
  */

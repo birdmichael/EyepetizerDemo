@@ -28,14 +28,6 @@
     CategoriesCollectionViewController *categries = [[CategoriesCollectionViewController alloc]init];
     [self addChildVC:categries WithTitle:@"往期分类"];
     
-    
-    for (UIView *subView in self.tabBarController.view.subviews) {
-        if ([subView isKindOfClass:NSClassFromString(@"UITransitionView")]) {
-            subView.height = 10;
-        }
-    }
-    
-    
 
 }
 
@@ -91,4 +83,5 @@
 {
     return UIInterfaceOrientationMaskPortrait;
 }
+
 @end

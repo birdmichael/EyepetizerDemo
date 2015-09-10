@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7B1AC85D1BA1F9B100906B60 /* CategoriesTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */; };
 		7B8FCF191BA1D9C70091E8F6 /* NSString+FormatterDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8FCF181BA1D9C70091E8F6 /* NSString+FormatterDate.m */; };
 		7BD445261BA034FD0076D179 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD445251BA034FD0076D179 /* main.m */; };
 		7BD4452F1BA034FD0076D179 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BD4452D1BA034FD0076D179 /* Main.storyboard */; };
@@ -16,7 +17,6 @@
 		7BD448501BA039EA0076D179 /* BMVideoPlayerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447B21BA039E90076D179 /* BMVideoPlayerViewController.m */; };
 		7BD448511BA039EA0076D179 /* BMVideoView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447B61BA039E90076D179 /* BMVideoView.m */; };
 		7BD448531BA039EA0076D179 /* PlayerSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447BA1BA039E90076D179 /* PlayerSlider.m */; };
-		7BD448541BA039EA0076D179 /* PlayerView.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 7BD447BB1BA039E90076D179 /* PlayerView.bundle */; };
 		7BD448551BA039EA0076D179 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447BE1BA039E90076D179 /* AppDelegate.m */; };
 		7BD448561BA039EA0076D179 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447C31BA039E90076D179 /* AFHTTPRequestOperation.m */; };
 		7BD448571BA039EA0076D179 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD447C51BA039E90076D179 /* AFHTTPRequestOperationManager.m */; };
@@ -116,6 +116,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7B1AC85B1BA1F9B100906B60 /* CategoriesTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesTimeViewController.h; sourceTree = "<group>"; };
+		7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesTimeViewController.m; sourceTree = "<group>"; };
 		7B8FCF171BA1D9C70091E8F6 /* NSString+FormatterDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FormatterDate.h"; sourceTree = "<group>"; };
 		7B8FCF181BA1D9C70091E8F6 /* NSString+FormatterDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FormatterDate.m"; sourceTree = "<group>"; };
 		7BD445201BA034FD0076D179 /* BirdMichael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdMichael.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +135,6 @@
 		7BD447B61BA039E90076D179 /* BMVideoView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BMVideoView.m; sourceTree = "<group>"; };
 		7BD447B91BA039E90076D179 /* PlayerSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerSlider.h; sourceTree = "<group>"; };
 		7BD447BA1BA039E90076D179 /* PlayerSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerSlider.m; sourceTree = "<group>"; };
-		7BD447BB1BA039E90076D179 /* PlayerView.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = PlayerView.bundle; sourceTree = "<group>"; };
 		7BD447BD1BA039E90076D179 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		7BD447BE1BA039E90076D179 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		7BD447BF1BA039E90076D179 /* Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Header.h; sourceTree = "<group>"; };
@@ -420,7 +421,6 @@
 				7BD447B61BA039E90076D179 /* BMVideoView.m */,
 				7BD447B91BA039E90076D179 /* PlayerSlider.h */,
 				7BD447BA1BA039E90076D179 /* PlayerSlider.m */,
-				7BD447BB1BA039E90076D179 /* PlayerView.bundle */,
 			);
 			path = v;
 			sourceTree = "<group>";
@@ -686,6 +686,8 @@
 				7BD448991BA039F30076D179 /* CategoriesCollectionViewController.m */,
 				7BD4489A1BA039F30076D179 /* HomeTableViewController.h */,
 				7BD4489B1BA039F30076D179 /* HomeTableViewController.m */,
+				7B1AC85B1BA1F9B100906B60 /* CategoriesTimeViewController.h */,
+				7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */,
 			);
 			path = c;
 			sourceTree = "<group>";
@@ -877,7 +879,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				7BD4452F1BA034FD0076D179 /* Main.storyboard in Resources */,
-				7BD448541BA039EA0076D179 /* PlayerView.bundle in Resources */,
 				7BD448DC1BA039FC0076D179 /* FZLTZCHJW--GB1-0.TTF in Resources */,
 				7BD448811BA039EA0076D179 /* MJRefresh.bundle in Resources */,
 				7BD448DB1BA039FC0076D179 /* FZLTXIHJW--GB1-0.TTF in Resources */,
@@ -934,6 +935,7 @@
 				7BD448B51BA039F30076D179 /* CatgorieCollectionViewCell.m in Sources */,
 				7BD448581BA039EA0076D179 /* AFHTTPSessionManager.m in Sources */,
 				7BD448891BA039EA0076D179 /* SDWebImageCompat.m in Sources */,
+				7B1AC85D1BA1F9B100906B60 /* CategoriesTimeViewController.m in Sources */,
 				7BD448771BA039EA0076D179 /* MJRefreshHeader.m in Sources */,
 				7BD448711BA039EA0076D179 /* NSObject+MJProperty.m in Sources */,
 				7BD448731BA039EA0076D179 /* MJRefreshAutoFooter.m in Sources */,

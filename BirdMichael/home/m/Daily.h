@@ -24,13 +24,5 @@
 @property (nonatomic,copy) NSString *date;
 
 
-/**
- *  	请求路径
- */
-- (NSString *)toPath;
 
-/**
- *  	请求参数
- */
-- (NSDictionary *)toParameterWith:(NSDate *)date;
 @end
