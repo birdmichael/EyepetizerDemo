@@ -24,10 +24,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor blackColor];
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     Play *play = [self.video.playInfo firstObject];
     [self preparePlayerWithURL:[NSURL URLWithString:play.url]];
+    [self setupAndStartPlaying:nil];
 }
 
 #pragma mark 设置两种横竖屏方式

@@ -13,7 +13,7 @@
 #import "Header.h"
 #import "PlayerSlider.h"
 #import "UIView+XYWH.h"
-
+#import "MBProgressHUD+BM.h"
 #define ToolsHudH 50.0
 #define PlayHudH 30.0
 
@@ -142,10 +142,11 @@
     if (self.playerItem) {
         self.playerItem = nil;
     }
-    
+
     _playerItem = aPlayerItem;
     self.moviePlayer = [AVPlayer playerWithPlayerItem:self.playerItem];
     _playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.moviePlayer];
+    
     [self.playerLayer setFrame:aFrame];
     [self.moviePlayer seekToTime:kCMTimeZero];
     [self setPlayer:self.moviePlayer];
@@ -154,7 +155,10 @@
     
     [self registerObservers];
     [self initializePlayerAtFrame:aFrame];
-    
+    [self setupConstraints];
+    [self showHUD:NO];
+    [self showLoader:YES];
+
 }
 
 -(void) setFrame:(CGRect)frame {
@@ -186,6 +190,7 @@
     // 页面返回按钮
     
     self.pageBackButton      = [UIButton buttonWithType:UIButtonTypeCustom];
+    self.pageBackButton.showsTouchWhenHighlighted = YES;
     [self.pageBackButton setImage:[UIImage imageNamed:@"btn_back_normal"] forState:UIControlStateNormal];
     [self.pageBackButton addTarget:self action:@selector(pageBackButtonAction:) forControlEvents:UIControlEventTouchUpInside];
     [self.toolsHudView addSubview:self.pageBackButton];
@@ -245,7 +250,6 @@
          [self.playBackTotalTime sizeToFit];
     [self.playerHudView addSubview:self.playBackTotalTime];
 
-    
     CMTime interval = CMTimeMake(33, 1000);
     __weak __typeof(self) weakself = self;
     _playbackObserver = [self.moviePlayer addPeriodicTimeObserverForInterval:interval queue:dispatch_get_main_queue() usingBlock: ^(CMTime time) {
@@ -256,13 +260,12 @@
         }
         weakself.playBackTime.text = [weakself getStringFromCMTime:weakself.moviePlayer.currentTime];
     }];
-    
-    [self setupConstraints];
-    [self showHUD:NO];
-    [self showLoader:NO];
+
     
 
 }
+
+
 
 #pragma mark - AutoLayout setup
 
@@ -356,6 +359,8 @@
                           metrics:nil
                           views:@{@"HudView": self.playerHudView }]];
     
+    self.playerHudView.y = self.height;  // 避免playerHudView加载时,动画从上掉落
+    
     // Play button
     [self.playPauseButton centerInSuperview];
     
@@ -379,7 +384,7 @@
 }
 
 
-#pragma mark  页面点击时间
+#pragma mark  屏幕触摸事件
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
     
     CGPoint point = [(UITouch*)[touches anyObject] locationInView:self];
@@ -388,32 +393,29 @@
     }
 }
 
+
 -(void) showHUD:(BOOL)show {
     
     __weak __typeof(self) weakself = self;
-    if (show) {
-        self.overHudView.hidden = NO; // 隐藏蒙版
-        
-        CGRect frame = self.playerHudView.frame;
-        frame.origin.y = self.bounds.size.height - self.playerHudView.frame.size.height;
-        
+    if (show) {// 显示蒙版
+        self.overHudView.hidden = NO;
+
         
         [UIView animateWithDuration:0.3 animations:^{
-            weakself.playerHudView.frame = frame;
+            weakself.playerHudView.y = weakself.height - weakself.playerHudView.height;
             weakself.toolsHudView.y = weakself.y;
             
             weakself.playPauseButton.layer.opacity = 1;
             self.isViewShowing = show;
         }];
-    } else {
+    } else {// 隐藏蒙版
         self.overHudView.hidden = YES;
-        CGRect frame = self.playerHudView.frame;
-        frame.origin.y = self.bounds.size.height;
+        
         
         [UIView animateWithDuration:0.3 animations:^{
             weakself.toolsHudView.y = weakself.y - weakself.toolsHudView.height;
             
-            weakself.playerHudView.frame = frame;
+            weakself.playerHudView.y = self.height;
             weakself.playPauseButton.layer.opacity = 0;
             self.isViewShowing = show;
         }];
@@ -429,6 +431,8 @@
     }
 }
 
+
+#pragma mark  页面点击时间
 -(void)playerFinishedPlaying {
     
     [self.moviePlayer pause];
@@ -561,7 +565,7 @@
         [self.activityIndicator startAnimating];
         self.activityIndicator.translatesAutoresizingMaskIntoConstraints = NO;
         [self addSubview:self.activityIndicator];
-        
+        [self bringSubviewToFront:self.playPauseButton];  // 避免菊花后无法点击
         if (!wasInterrupted) {
             self.playPauseButton.alpha = 0.0;
         }
@@ -599,14 +603,18 @@
             switch(item.status)
             {
                 case AVPlayerItemStatusFailed:
+                    [MBProgressHUD showError:@"网络错误"];
                     DLog(@"%s: player item status failed", __func__);
+                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                        [MBProgressHUD hideHUD];
+                    });
                     break;
                 case AVPlayerItemStatusReadyToPlay:
                     DLog(@"%s: player item status is ready to play", __func__);
                     [self removeLoader];
-                    if (self.isPlaying) {
+                    
                         [self play];  // 监听到状态为准备播放就立马播放
-                    };
+        
                     break;
                 case AVPlayerItemStatusUnknown:
                     DLog(@"%s: player item status is unknown", __func__);
@@ -635,6 +643,8 @@
             CGFloat frameRate = [(AVPlayer*)object rate];
             if (frameRate > 0.0 && self.activityIndicator) {
                 [self removeLoader];
+            }else if ((frameRate < 0.0 && self.activityIndicator == nil)){
+                [self showLoader:YES];
             }
             DLog(@"%s: player rate is %f", __func__, [(AVPlayer*)object rate]);
         }
