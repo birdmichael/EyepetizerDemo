@@ -10,6 +10,7 @@
 #import "UILabel+TextHight.h"
 #import "VideoTableViewCell.h"
 #import "MJRefresh.h"
+#import "DIYRefresh.h"
 #import "HttpTools.h"
 #import "Page.h"
 #import "Daily.h"
@@ -48,7 +49,7 @@
 - (void)addRefresh
 {
     // 添加下拉刷新
-    self.tableView.header = [MJRefreshGifHeader headerWithRefreshingTarget:self refreshingAction:@selector(headerWithRefreshingDate:)];
+    self.tableView.header = [DIYRefresh headerWithRefreshingTarget:self refreshingAction:@selector(headerWithRefreshingDate:)];
     // 添加上拉刷新
     MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
     footer.appearencePercentTriggerAutoRefresh = -5;

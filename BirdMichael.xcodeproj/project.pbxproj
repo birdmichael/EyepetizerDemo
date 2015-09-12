@@ -103,6 +103,7 @@
 		7BD448DD1BA039FC0076D179 /* Lobster 1.4.otf in Resources */ = {isa = PBXBuildFile; fileRef = 7BD448CC1BA039FC0076D179 /* Lobster 1.4.otf */; };
 		7BD448DE1BA039FC0076D179 /* HttpTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD448D01BA039FC0076D179 /* HttpTools.m */; };
 		7BD448DF1BA039FC0076D179 /* MainTabBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD448D31BA039FC0076D179 /* MainTabBar.m */; };
+		7BFBCAE21BA41D7B003D2ACC /* DIYRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BFBCAE11BA41D7B003D2ACC /* DIYRefresh.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -308,6 +309,8 @@
 		7BD448D01BA039FC0076D179 /* HttpTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HttpTools.m; sourceTree = "<group>"; };
 		7BD448D21BA039FC0076D179 /* MainTabBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTabBar.h; sourceTree = "<group>"; };
 		7BD448D31BA039FC0076D179 /* MainTabBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTabBar.m; sourceTree = "<group>"; };
+		7BFBCAE01BA41D7B003D2ACC /* DIYRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYRefresh.h; sourceTree = "<group>"; };
+		7BFBCAE11BA41D7B003D2ACC /* DIYRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYRefresh.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -794,6 +797,8 @@
 			children = (
 				7BD448D21BA039FC0076D179 /* MainTabBar.h */,
 				7BD448D31BA039FC0076D179 /* MainTabBar.m */,
+				7BFBCAE01BA41D7B003D2ACC /* DIYRefresh.h */,
+				7BFBCAE11BA41D7B003D2ACC /* DIYRefresh.m */,
 			);
 			path = v;
 			sourceTree = "<group>";
@@ -983,6 +988,7 @@
 				7BD448D81BA039FC0076D179 /* UILabel+TextHight.m in Sources */,
 				7BD4488D1BA039EA0076D179 /* SDWebImageManager.m in Sources */,
 				7BD448B31BA039F30076D179 /* Play.m in Sources */,
+				7BFBCAE21BA41D7B003D2ACC /* DIYRefresh.m in Sources */,
 				7BD4488B1BA039EA0076D179 /* SDWebImageDownloader.m in Sources */,
 				7BD448651BA039EA0076D179 /* NSDate+DateTools.m in Sources */,
 				7BD4488C1BA039EA0076D179 /* SDWebImageDownloaderOperation.m in Sources */,
