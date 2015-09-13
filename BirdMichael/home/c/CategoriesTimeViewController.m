@@ -17,6 +17,8 @@
 #import "MBProgressHUD+BM.h"
 #import "MJExtension.h"
 
+#import "UIView+XYWH.h"
+#import "DIYAutoFooter.h"
 @interface CategoriesTimeViewController()
 @property (nonatomic, strong) NSMutableArray *videoList;
 
@@ -47,17 +49,21 @@
     
     // 取消分割线样式
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    
+
+    
 }
 - (void)addVideoDate
 {
     __weak typeof(self) weakSelf = self;
     [HttpTools GET:[Video toPathFromCategorie] parameters:[Video toParameterFromCategorie:self.categorie WithController:self Withlength:self.videoList.count] success:^(id json) {
         // 获取数据[Video objectArrayWithKeyValuesArray:json[@"videoList"]];
-    
-        weakSelf.videoList = [Video objectArrayWithKeyValuesArray:json[@"videoList"]];
-
+        NSArray *array = json[@"videoList"];
+        
+        weakSelf.videoList = [Video objectArrayWithKeyValuesArray:array];
+        
         // 刷新表格
-        [weakSelf.tableView reloadData];
+            [weakSelf.tableView reloadData];
     } failure:^(NSError *error) {
         [MBProgressHUD showError:@"请求失败"];
     }];
@@ -72,8 +78,8 @@
 - (void)addRefresh
 {
     // 添加上拉刷新
-    MJRefreshAutoFooter *footer = [MJRefreshAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
-    footer.appearencePercentTriggerAutoRefresh = -5;
+    DIYAutoFooter *footer = [DIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
+
     self.tableView.footer = footer;
 }
 
@@ -84,13 +90,17 @@
 {
     __weak typeof(self) weakSelf = self;
     [HttpTools GET:[Video toPathFromCategorie] parameters:[Video toParameterFromCategorie:self.categorie WithController:self Withlength:self.videoList.count] success:^(id json) {
+         NSArray *array = json[@"videoList"];
+        if(array.count == 0){
+            [self.tableView.footer noticeNoMoreData];
+        }else{
         // 获取数据
-        [weakSelf.videoList addObjectsFromArray:[Video objectArrayWithKeyValuesArray:json[@"videoList"]]];
+        [weakSelf.videoList addObjectsFromArray:[Video objectArrayWithKeyValuesArray:array]];
 
         // 刷新表格
         [self.tableView reloadData];
         // 结束刷新
-        [self.tableView.footer endRefreshing];
+            [self.tableView.footer endRefreshing];}
     } failure:^(NSError *error) {
         [MBProgressHUD showError:@"请求失败"];
         [self.tableView.footer endRefreshing];
@@ -162,6 +172,8 @@
     
     [self presentViewController:Vc animated:YES completion:nil];
 }
+
+
 
 #pragma mark 懒加载
 

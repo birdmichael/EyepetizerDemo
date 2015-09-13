@@ -113,11 +113,7 @@
 - (void)setPullingPercent:(CGFloat)pullingPercent
 {
     [super setPullingPercent:pullingPercent];
-    
-//    CGFloat red = 1.0 - pullingPercent * 0.5;
-//    CGFloat green = 0.5 - 0.5 * pullingPercent;
-//    CGFloat blue = 0.5 * pullingPercent;
-//    self.label.textColor = [UIColor colorWithRed:red green:green blue:blue alpha:1.0];
+
 }
 
 #pragma mark 动画
@@ -148,13 +144,7 @@
     int iMinutes = 59 - (int)[[NSDate date] formattedDateWithFormat:@"mm"].integerValue ;
     NSString *str = [NSString stringWithFormat:@"距离更新还有%d小时%d分" ,iHours ,iMinutes];
     
-//    NSMutableAttributedString *Attributstr = [[NSMutableAttributedString alloc] initWithString:str];
-//    [Attributstr addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(0,5)];
-//    [Attributstr addAttribute:NSForegroundColorAttributeName value:[UIColor redColor] range:NSMakeRange(6,12)];
-//    [Attributstr addAttribute:NSForegroundColorAttributeName value:[UIColor greenColor] range:NSMakeRange(19,6)];
-//    [Attributstr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Arial-BoldItalicMT" size:30.0] range:NSMakeRange(0, 5)];
-//    [Attributstr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"HelveticaNeue-Bold" size:30.0] range:NSMakeRange(6, 12)];
-//    [Attributstr addAttribute:NSFontAttributeName value:[UIFont fontWithName:@"Courier-BoldOblique" size:30.0] range:NSMakeRange(19, 6)];
+
     self.label.text = str;
 }
 
