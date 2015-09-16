@@ -6,7 +6,7 @@
 //  Copyright (c) 2015年 BirdMIchael. All rights reserved.
 //
 
-#import "DIYAutoFooter.h"
+#import "DIYAutoRefreshFooter.h"
 #import "Header.h"
 #import "UIView+XYWH.h"
 @interface DIYAutoFooter()
