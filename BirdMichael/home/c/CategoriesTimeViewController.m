@@ -18,7 +18,7 @@
 #import "MJExtension.h"
 
 #import "UIView+XYWH.h"
-#import "DIYAutoFooter.h"
+#import "DIYAutoRefreshFooter.h"
 @interface CategoriesTimeViewController()
 @property (nonatomic, strong) NSMutableArray *videoList;
 

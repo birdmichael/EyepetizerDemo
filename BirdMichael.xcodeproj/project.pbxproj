@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7B1AC85D1BA1F9B100906B60 /* CategoriesTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */; };
 		7B8FCF191BA1D9C70091E8F6 /* NSString+FormatterDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8FCF181BA1D9C70091E8F6 /* NSString+FormatterDate.m */; };
+		7BB347991BA92FFC00358903 /* DIYAutoRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB347971BA92FFC00358903 /* DIYAutoRefreshFooter.m */; };
 		7BD445261BA034FD0076D179 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD445251BA034FD0076D179 /* main.m */; };
 		7BD4452F1BA034FD0076D179 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BD4452D1BA034FD0076D179 /* Main.storyboard */; };
 		7BD445311BA034FD0076D179 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7BD445301BA034FD0076D179 /* Images.xcassets */; };
@@ -121,6 +122,8 @@
 		7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesTimeViewController.m; sourceTree = "<group>"; };
 		7B8FCF171BA1D9C70091E8F6 /* NSString+FormatterDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FormatterDate.h"; sourceTree = "<group>"; };
 		7B8FCF181BA1D9C70091E8F6 /* NSString+FormatterDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FormatterDate.m"; sourceTree = "<group>"; };
+		7BB347971BA92FFC00358903 /* DIYAutoRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYAutoRefreshFooter.m; sourceTree = "<group>"; };
+		7BB347981BA92FFC00358903 /* DIYAutoRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYAutoRefreshFooter.h; sourceTree = "<group>"; };
 		7BD445201BA034FD0076D179 /* BirdMichael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdMichael.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7BD445241BA034FD0076D179 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7BD445251BA034FD0076D179 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -795,6 +798,8 @@
 		7BD448D11BA039FC0076D179 /* v */ = {
 			isa = PBXGroup;
 			children = (
+				7BB347971BA92FFC00358903 /* DIYAutoRefreshFooter.m */,
+				7BB347981BA92FFC00358903 /* DIYAutoRefreshFooter.h */,
 				7BD448D21BA039FC0076D179 /* MainTabBar.h */,
 				7BD448D31BA039FC0076D179 /* MainTabBar.m */,
 				7BFBCAE01BA41D7B003D2ACC /* DIYRefresh.h */,
@@ -915,6 +920,7 @@
 				7BD448921BA039EA0076D179 /* UIImage+WebP.m in Sources */,
 				7BD448681BA039EA0076D179 /* MBProgressHUD.m in Sources */,
 				7BD448781BA039EA0076D179 /* MJRefreshAutoGifFooter.m in Sources */,
+				7BB347991BA92FFC00358903 /* DIYAutoRefreshFooter.m in Sources */,
 				7BD448501BA039EA0076D179 /* BMVideoPlayerViewController.m in Sources */,
 				7BD4486C1BA039EA0076D179 /* MJPropertyKey.m in Sources */,
 				7BD4487B1BA039EA0076D179 /* MJRefreshBackGifFooter.m in Sources */,
