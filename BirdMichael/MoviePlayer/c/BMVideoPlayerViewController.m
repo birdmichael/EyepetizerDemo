@@ -28,7 +28,7 @@
     self.view.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     Play *play = [self.video.playInfo firstObject];
     [self preparePlayerWithURL:[NSURL URLWithString:play.url]];
-    [self setupAndStartPlaying:nil];
+//    [self setupAndStartPlaying:nil];
 }
 
 #pragma mark 设置两种横竖屏方式
@@ -79,7 +79,7 @@
     
 }
 - (void)setupAndStartPlaying:(NSURL*)url {
-    dispatch_async(dispatch_get_main_queue(), ^{
+    dispatch_async(dispatch_get_main_queue(), ^{ //asset是子线程,返回主线程
         // 创建播放View
         [self setupPlayer:url];
         // 开始播放

@@ -56,6 +56,8 @@
 @property (strong, nonatomic) UIView *playerHudView;
 /** 播放条滑块 */
 @property (strong, nonatomic) UISlider *progressBar;
+/** 缓冲进度条 */
+@property (strong, nonatomic) UIProgressView *loadedTimeView;
 /** 已播放时间 */
 @property (strong, nonatomic) UILabel *playBackTime;
 /** 视频总时长 */
@@ -223,12 +225,19 @@
 
     //  Progress bar = scrubber  时间进度条
     self.progressBar            = [[UISlider alloc] init];
-    [self.progressBar setThumbImage:[UIImage imageNamed:@"player_handle"]
-                           forState:UIControlStateNormal];
+//    [self.progressBar setThumbImage:[UIImage imageNamed:@"progress_controller"]
+//                           forState:UIControlStateNormal];
+    self.progressBar.maximumTrackTintColor = [UIColor clearColor];
     [self.progressBar addTarget:self action:@selector(progressBarChanged:) forControlEvents:UIControlEventValueChanged];
     [self.progressBar addTarget:self action:@selector(progressBarChangeEnded:) forControlEvents:UIControlEventTouchUpInside];
     [self.playerHudView addSubview:self.progressBar];
-
+    
+    //  loadedTimeView   缓冲进度条
+    self.loadedTimeView = [[UIProgressView alloc]init];
+    self.loadedTimeView.progressTintColor = [UIColor whiteColor];
+    self.loadedTimeView.trackTintColor = [UIColor clearColor];
+    [self.playerHudView addSubview:self.loadedTimeView];
+    
     // Calculate appropriately sized font
     UIFont *timeFont            = Font_ChinaBold(12);
 
@@ -263,8 +272,8 @@
 
     
 
+    
 }
-
 
 
 #pragma mark - AutoLayout setup
@@ -284,6 +293,7 @@
     self.toolsHudView.translatesAutoresizingMaskIntoConstraints = NO;
     self.pageBackButton.translatesAutoresizingMaskIntoConstraints = NO;
     self.titleLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    self.loadedTimeView.translatesAutoresizingMaskIntoConstraints = NO;
     
     // over HUD
     [self addConstraints:[NSLayoutConstraint
@@ -364,7 +374,7 @@
     // Play button
     [self.playPauseButton centerInSuperview];
     
-    // currentTime, progress bar, totalTime
+    // currentTime, progress bar, totalTime,loadedTimeView
     NSDictionary *hudMetrics = @{@"maxWidth":[NSNumber numberWithFloat:MAX([UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height)]};
     NSDictionary *hudViews = @{@"progressBar": self.progressBar,
                                @"playBackTime": self.playBackTime,
@@ -378,6 +388,24 @@
     [self.playBackTotalTime centerVerticallyInSuperview];
     [self.playBackTime centerVerticallyInSuperview];
     [self.progressBar centerVerticallyInSuperview];
+    
+    // loadedTimeView
+    [self.playerHudView addConstraint:[NSLayoutConstraint constraintWithItem:self.loadedTimeView
+                                                     attribute:NSLayoutAttributeLeading
+                                                     relatedBy:NSLayoutRelationEqual
+                                                        toItem:self.progressBar
+                                                     attribute:NSLayoutAttributeLeading
+                                                    multiplier:1.0
+                                                      constant:0.0]];
+    [self.playerHudView addConstraint:[NSLayoutConstraint constraintWithItem:self.loadedTimeView
+                                                                    attribute:NSLayoutAttributeTrailing
+                                                                    relatedBy:NSLayoutRelationEqual
+                                                                       toItem:self.progressBar
+                                                                    attribute:NSLayoutAttributeTrailing
+                                                                   multiplier:1.0
+                                                                     constant:0.0]];
+    
+    [self.loadedTimeView centerVerticallyInSuperview];
     
         DLog(@"%s: Auto Layout constraints = %@ %@", __func__, self.constraints, self.playerHudView.constraints);
     
@@ -592,6 +620,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
+    
     if ([object isKindOfClass:[AVPlayerItem class]])
     {
         AVPlayerItem *item = (AVPlayerItem *)object;
@@ -603,11 +632,9 @@
             switch(item.status)
             {
                 case AVPlayerItemStatusFailed:
-                    [MBProgressHUD showError:@"网络错误"];
+                    [MBProgressHUD showError:@"网络错误" toView:self.window];
                     DLog(@"%s: player item status failed", __func__);
-                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                        [MBProgressHUD hideHUD];
-                    });
+                    
                     break;
                 case AVPlayerItemStatusReadyToPlay:
                     DLog(@"%s: player item status is ready to play", __func__);
@@ -621,6 +648,13 @@
                     break;
             }
         }
+        else if ([keyPath isEqualToString:@"loadedTimeRanges"]) {
+            NSTimeInterval timeInterval = [self availableDuraton];// 计算缓冲进度
+            CMTime duration = self.playerItem.duration;
+            CGFloat totalDuration = CMTimeGetSeconds(duration);
+            [self.loadedTimeView setProgress:timeInterval / totalDuration animated:YES];
+            
+        }
         else if ([keyPath isEqualToString:@"playbackBufferEmpty"])
         {
             if (item.playbackBufferEmpty)
@@ -630,12 +664,15 @@
                     // perform secondary check that player has actually stopped
                     if (self.moviePlayer.rate == 0.0) {
                         [self showLoader:YES];
+                        [self pause];
                     }
                 }
                 DLog(@"%s: player item playback buffer is empty", __func__);
             }
         }
+        
     }
+    
     if ([object isKindOfClass:[AVPlayer class]]) {
         
         // secondary check on activityIndicator, remove shown && framerate > 0.0
@@ -649,6 +686,17 @@
             DLog(@"%s: player rate is %f", __func__, [(AVPlayer*)object rate]);
         }
     }
+    
+}
+#pragma mark - availableDuraton
+- (NSTimeInterval)availableDuraton
+{
+    NSArray *loadedTimeRanges = [[self.moviePlayer currentItem] loadedTimeRanges];
+    CMTimeRange timeRange = [loadedTimeRanges.firstObject CMTimeRangeValue]; // 获取缓冲区域
+    float startSeconds = CMTimeGetSeconds(timeRange.start);
+    float durationSecond = CMTimeGetSeconds(timeRange.duration);
+    NSTimeInterval result = startSeconds + durationSecond; // 计算缓冲总进度
+    return result;
 }
 
 #pragma mark - KVO of Player notifications, setup/teardown
@@ -661,10 +709,12 @@
     // monitor playerItem status (ready to play, failed; buffer)
     for (NSString *keyPath in [self observablePlayerItemKeypaths]) {
         [self.playerItem addObserver:self forKeyPath:keyPath options:0 context:NULL];
+        
     }
     
     // monitor player frame rate
     [self.player addObserver:self forKeyPath:@"rate" options:0 context:NULL];
+    
     
 }
 
@@ -679,7 +729,7 @@
 }
 
 - (NSArray *)observablePlayerItemKeypaths {
-    return [NSArray arrayWithObjects:@"playbackBufferEmpty", @"status", nil];
+    return [NSArray arrayWithObjects:@"playbackBufferEmpty", @"status",@"loadedTimeRanges", nil];
 }
 
 
@@ -698,6 +748,7 @@
     
     [self.moviePlayer removeTimeObserver:self.playbackObserver];
     [self unregisterObservers];
+    
     
     self.playerItem = nil;
     self.playerLayer= nil;
