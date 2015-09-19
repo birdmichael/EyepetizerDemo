@@ -126,8 +126,9 @@
     }
     
     AVPlayerItem *aPlayerItem = [AVPlayerItem playerItemWithURL:theURL];
-    self.contentURL = theURL;
     [self setupPlayerWithPlayerItem:aPlayerItem forFrame:aFrame];
+    self.contentURL = theURL;
+    
 }
 
 - (void)setupPlayerWithPlayerItem:(AVPlayerItem*)aPlayerItem forFrame:(CGRect)aFrame{
@@ -188,6 +189,7 @@
     // ========== 顶部工具栏HUB
     self.toolsHudView        = [[UIView alloc] init];
     [self addSubview:self.toolsHudView];
+    
 
     // 页面返回按钮
     
@@ -225,8 +227,8 @@
 
     //  Progress bar = scrubber  时间进度条
     self.progressBar            = [[UISlider alloc] init];
-//    [self.progressBar setThumbImage:[UIImage imageNamed:@"progress_controller"]
-//                           forState:UIControlStateNormal];
+    [self.progressBar setThumbImage:[UIImage imageNamed:@"progress_controller"]
+                           forState:UIControlStateNormal];
     self.progressBar.maximumTrackTintColor = [UIColor clearColor];
     [self.progressBar addTarget:self action:@selector(progressBarChanged:) forControlEvents:UIControlEventValueChanged];
     [self.progressBar addTarget:self action:@selector(progressBarChangeEnded:) forControlEvents:UIControlEventTouchUpInside];
@@ -653,7 +655,7 @@
             CMTime duration = self.playerItem.duration;
             CGFloat totalDuration = CMTimeGetSeconds(duration);
             [self.loadedTimeView setProgress:timeInterval / totalDuration animated:YES];
-            
+            DLog(@"loadedTimeRanges %f",(timeInterval / totalDuration));
         }
         else if ([keyPath isEqualToString:@"playbackBufferEmpty"])
         {

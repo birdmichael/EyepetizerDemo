@@ -14,6 +14,8 @@
 #import "MJExtension.h"
 #import "CategoriesTimeViewController.h"
 #import "CatgorieCollectionViewCell.h"
+
+#import "CatgoriesTimeAndShareViewController.h"
 @interface CategoriesCollectionViewController()
 @property (nonatomic ,strong) NSArray *categories;
 @end
@@ -126,7 +128,7 @@
 #pragma mark -- UICollectionView代理方法
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    CategoriesTimeViewController *vc = [[CategoriesTimeViewController alloc]init];
+    CatgoriesTimeAndShareViewController *vc = [[CatgoriesTimeAndShareViewController alloc]init];
     vc.categorie = self.categories[indexPath.row];
     [self.navigationController pushViewController:vc animated:YES];
     

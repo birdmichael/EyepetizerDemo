@@ -78,6 +78,7 @@
     }];
     
 }
+
 - (void)setupAndStartPlaying:(NSURL*)url {
     dispatch_async(dispatch_get_main_queue(), ^{ //asset是子线程,返回主线程
         // 创建播放View

@@ -10,6 +10,7 @@
 #import "Play.h"
 #import "Categorie.h"
 #import "CategoriesTimeViewController.h"
+#import "CategoriesShareViewController.h"
 
 @implementation Video
 + (NSDictionary *)objectClassInArray
@@ -42,6 +43,8 @@
     Parameter[@"categoryName"] = categorie.name;
     if ([controller isKindOfClass:[CategoriesTimeViewController class]]) {
         Parameter[@"strategy"] = @"date";
+    }else if ([controller isKindOfClass:[CategoriesShareViewController class]]){
+        Parameter[@"strategy"] = @"shareCount";
     }
     Parameter[@"start"] = [NSString stringWithFormat:@"%lu",(unsigned long)length];
     return Parameter;

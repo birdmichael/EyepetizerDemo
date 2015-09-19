@@ -8,7 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		7B1AC85D1BA1F9B100906B60 /* CategoriesTimeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */; };
+		7B452E601BADB32400FD54EE /* SegmentedWithContenView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B452E5F1BADB32400FD54EE /* SegmentedWithContenView.m */; settings = {ASSET_TAGS = (); }; };
+		7B85A5041BADEF9B006EA83A /* HMSegmentedControl.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B85A5031BADEF9B006EA83A /* HMSegmentedControl.m */; settings = {ASSET_TAGS = (); }; };
+		7B85A5071BADF9A4006EA83A /* CategoriesShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B85A5061BADF9A4006EA83A /* CategoriesShareViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7B8FCF191BA1D9C70091E8F6 /* NSString+FormatterDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B8FCF181BA1D9C70091E8F6 /* NSString+FormatterDate.m */; };
+		7B9CFF911BAD4AC700BD8D06 /* CatgoriesTimeAndShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7B9CFF901BAD4AC700BD8D06 /* CatgoriesTimeAndShareViewController.m */; settings = {ASSET_TAGS = (); }; };
 		7BB347991BA92FFC00358903 /* DIYAutoRefreshFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BB347971BA92FFC00358903 /* DIYAutoRefreshFooter.m */; };
 		7BD445261BA034FD0076D179 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 7BD445251BA034FD0076D179 /* main.m */; };
 		7BD4452F1BA034FD0076D179 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7BD4452D1BA034FD0076D179 /* Main.storyboard */; };
@@ -120,8 +124,16 @@
 /* Begin PBXFileReference section */
 		7B1AC85B1BA1F9B100906B60 /* CategoriesTimeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesTimeViewController.h; sourceTree = "<group>"; };
 		7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesTimeViewController.m; sourceTree = "<group>"; };
+		7B452E5E1BADB32400FD54EE /* SegmentedWithContenView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SegmentedWithContenView.h; sourceTree = "<group>"; };
+		7B452E5F1BADB32400FD54EE /* SegmentedWithContenView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SegmentedWithContenView.m; sourceTree = "<group>"; };
+		7B85A5021BADEF9B006EA83A /* HMSegmentedControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HMSegmentedControl.h; sourceTree = "<group>"; };
+		7B85A5031BADEF9B006EA83A /* HMSegmentedControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HMSegmentedControl.m; sourceTree = "<group>"; };
+		7B85A5051BADF9A4006EA83A /* CategoriesShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoriesShareViewController.h; sourceTree = "<group>"; };
+		7B85A5061BADF9A4006EA83A /* CategoriesShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoriesShareViewController.m; sourceTree = "<group>"; };
 		7B8FCF171BA1D9C70091E8F6 /* NSString+FormatterDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+FormatterDate.h"; sourceTree = "<group>"; };
 		7B8FCF181BA1D9C70091E8F6 /* NSString+FormatterDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+FormatterDate.m"; sourceTree = "<group>"; };
+		7B9CFF8F1BAD4AC700BD8D06 /* CatgoriesTimeAndShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CatgoriesTimeAndShareViewController.h; sourceTree = "<group>"; };
+		7B9CFF901BAD4AC700BD8D06 /* CatgoriesTimeAndShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CatgoriesTimeAndShareViewController.m; sourceTree = "<group>"; };
 		7BB347971BA92FFC00358903 /* DIYAutoRefreshFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DIYAutoRefreshFooter.m; sourceTree = "<group>"; };
 		7BB347981BA92FFC00358903 /* DIYAutoRefreshFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DIYAutoRefreshFooter.h; sourceTree = "<group>"; };
 		7BD445201BA034FD0076D179 /* BirdMichael.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BirdMichael.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -334,6 +346,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7B85A5011BADEF9B006EA83A /* HMSegmentedControl */ = {
+			isa = PBXGroup;
+			children = (
+				7B85A5021BADEF9B006EA83A /* HMSegmentedControl.h */,
+				7B85A5031BADEF9B006EA83A /* HMSegmentedControl.m */,
+			);
+			path = HMSegmentedControl;
+			sourceTree = "<group>";
+		};
 		7BD445171BA034FD0076D179 = {
 			isa = PBXGroup;
 			children = (
@@ -444,6 +465,7 @@
 		7BD447C01BA039E90076D179 /* Three */ = {
 			isa = PBXGroup;
 			children = (
+				7B85A5011BADEF9B006EA83A /* HMSegmentedControl */,
 				7BD447C11BA039E90076D179 /* AFNetworking */,
 				7BD447D51BA039E90076D179 /* DateTools */,
 				7BD447E51BA039E90076D179 /* MBProgressHUD */,
@@ -694,6 +716,10 @@
 				7BD4489B1BA039F30076D179 /* HomeTableViewController.m */,
 				7B1AC85B1BA1F9B100906B60 /* CategoriesTimeViewController.h */,
 				7B1AC85C1BA1F9B100906B60 /* CategoriesTimeViewController.m */,
+				7B9CFF8F1BAD4AC700BD8D06 /* CatgoriesTimeAndShareViewController.h */,
+				7B9CFF901BAD4AC700BD8D06 /* CatgoriesTimeAndShareViewController.m */,
+				7B85A5051BADF9A4006EA83A /* CategoriesShareViewController.h */,
+				7B85A5061BADF9A4006EA83A /* CategoriesShareViewController.m */,
 			);
 			path = c;
 			sourceTree = "<group>";
@@ -718,6 +744,8 @@
 		7BD448A71BA039F30076D179 /* v */ = {
 			isa = PBXGroup;
 			children = (
+				7B452E5E1BADB32400FD54EE /* SegmentedWithContenView.h */,
+				7B452E5F1BADB32400FD54EE /* SegmentedWithContenView.m */,
 				7BD448A81BA039F30076D179 /* CatgorieCollectionViewCell.h */,
 				7BD448A91BA039F30076D179 /* CatgorieCollectionViewCell.m */,
 				7BD448AA1BA039F30076D179 /* VideoTableHeaderView.h */,
@@ -927,6 +955,7 @@
 				7BD448781BA039EA0076D179 /* MJRefreshAutoGifFooter.m in Sources */,
 				7BB347991BA92FFC00358903 /* DIYAutoRefreshFooter.m in Sources */,
 				7BD448501BA039EA0076D179 /* BMVideoPlayerViewController.m in Sources */,
+				7B9CFF911BAD4AC700BD8D06 /* CatgoriesTimeAndShareViewController.m in Sources */,
 				7BD4486C1BA039EA0076D179 /* MJPropertyKey.m in Sources */,
 				7BD4487B1BA039EA0076D179 /* MJRefreshBackGifFooter.m in Sources */,
 				7BD448821BA039EA0076D179 /* MJRefreshConst.m in Sources */,
@@ -949,9 +978,12 @@
 				7BD448601BA039EA0076D179 /* DTError.m in Sources */,
 				7BD4488E1BA039EA0076D179 /* SDWebImagePrefetcher.m in Sources */,
 				7BD448B51BA039F30076D179 /* CatgorieCollectionViewCell.m in Sources */,
+				7B85A5041BADEF9B006EA83A /* HMSegmentedControl.m in Sources */,
 				7BD448581BA039EA0076D179 /* AFHTTPSessionManager.m in Sources */,
 				7BD448891BA039EA0076D179 /* SDWebImageCompat.m in Sources */,
+				7B85A5071BADF9A4006EA83A /* CategoriesShareViewController.m in Sources */,
 				7B1AC85D1BA1F9B100906B60 /* CategoriesTimeViewController.m in Sources */,
+				7B452E601BADB32400FD54EE /* SegmentedWithContenView.m in Sources */,
 				7BD448771BA039EA0076D179 /* MJRefreshHeader.m in Sources */,
 				7BD448711BA039EA0076D179 /* NSObject+MJProperty.m in Sources */,
 				7BD448731BA039EA0076D179 /* MJRefreshAutoFooter.m in Sources */,
