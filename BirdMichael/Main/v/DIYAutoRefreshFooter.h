@@ -8,6 +8,9 @@
 
 #import "MJRefreshAutoFooter.h"
 
-@interface DIYAutoFooter : MJRefreshAutoFooter
-
+@interface DIYAutoRefreshFooter : MJRefreshAutoFooter
+/**
+ *  关闭父控件自动Insets, 默认(no)
+ */
+@property (nonatomic, assign) BOOL colseAutomaticallyAdjustsSuperViewInsets;
 @end

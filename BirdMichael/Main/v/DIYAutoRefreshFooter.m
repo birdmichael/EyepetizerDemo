@@ -9,10 +9,10 @@
 #import "DIYAutoRefreshFooter.h"
 #import "Header.h"
 #import "UIView+XYWH.h"
-@interface DIYAutoFooter()
+@interface DIYAutoRefreshFooter()
 @property (nonatomic, weak)UILabel *label;
 @end
-@implementation DIYAutoFooter
+@implementation DIYAutoRefreshFooter
 
 #pragma mark - 重写方法
 #pragma mark 在这里做一些初始化配置（比如添加子控件）
@@ -21,15 +21,17 @@
     [super prepare];
     
     // 设置控件的高度
-    self.mj_h = 140;
+    self.mj_h = 160;
     self.triggerAutomaticallyRefreshPercent = -0.5;
     // 添加label
     UILabel *label = [[UILabel alloc] init];
     label.textColor = [UIColor blackColor];
     label.font = Font_EnglishFont(18);
     label.textAlignment = NSTextAlignmentCenter;
+    [label sizeToFit];
     [self addSubview:label];
     self.label = label;
+
 
 }
 
@@ -38,7 +40,12 @@
 {
     [super placeSubviews];
     
-    self.label.frame =self.bounds;
+//    self.label.frame =self.bounds;
+    self.label.y = 30;
+    self.label.centerX = self.centerX;
+    self.label.width = self.width;
+    self.label.height = 30;
+  
 
 }
 
@@ -79,5 +86,8 @@
     }
 }
 
-
+- (void)setColseAutomaticallyAdjustsSuperViewInsets:(BOOL)colseAutomaticallyAdjustsSuperViewInsets{
+    _colseAutomaticallyAdjustsSuperViewInsets = colseAutomaticallyAdjustsSuperViewInsets;
+    self.mj_h += 64;
+}
 @end

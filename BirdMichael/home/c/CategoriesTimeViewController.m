@@ -37,9 +37,6 @@
 - (void)viewDidLoad
 {
     
-    // 设置添加消息barBtnItem
-    [self addNavigationItem];
-    
     [self addVideoDate];
     
     //添加刷新控件
@@ -78,9 +75,10 @@
 - (void)addRefresh
 {
     // 添加上拉刷新
-    DIYAutoFooter *footer = [DIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
-
+    DIYAutoRefreshFooter *footer = [DIYAutoRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
+    footer.colseAutomaticallyAdjustsSuperViewInsets = YES;
     self.tableView.footer = footer;
+    NSLog(@"%@",NSStringFromCGRect(footer.frame));
 }
 
 ///**
@@ -107,31 +105,6 @@
     }];
 }
 
-#pragma mark 设置Nav
-/**
- *  设置Nav
- */
-- (void)addNavigationItem
-{
-    
-    //设置标题
-    NSMutableDictionary *attributes = [[NSMutableDictionary alloc]init];
-    attributes[NSFontAttributeName] = Font_ChinaBold(17);
-    NSMutableAttributedString *title = [[NSMutableAttributedString alloc]initWithString:self.categorie.name attributes:attributes];
-    UILabel *titleView = [[UILabel alloc]init];
-    titleView.attributedText = title;
-    [titleView setBounds:CGRectMake(0, 0, title.size.width, title.size.height)];
-    self.navigationItem.titleView = titleView;
-    
-    
-    UIBarButtonItem *leftNav = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"btn_back_normal"] style:UIBarButtonItemStyleDone target:self action:@selector(leftNavClick)];
-    leftNav.tintColor = [UIColor blackColor];
-    self.navigationItem.leftBarButtonItem = leftNav;
-}
-- (void)leftNavClick
-{
-    [self.navigationController popViewControllerAnimated:YES];
-}
 #pragma mark 数据源方法
 
 

@@ -67,8 +67,8 @@
 - (void)addRefresh
 {
     // 添加上拉刷新
-    DIYAutoFooter *footer = [DIYAutoFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
-    
+    DIYAutoRefreshFooter *footer = [DIYAutoRefreshFooter footerWithRefreshingTarget:self refreshingAction:@selector(footerWithRefreshingMore:)];
+    footer.colseAutomaticallyAdjustsSuperViewInsets = YES;
     self.tableView.footer = footer;
 }
 
