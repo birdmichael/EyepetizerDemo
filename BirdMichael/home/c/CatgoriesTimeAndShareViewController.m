@@ -31,19 +31,19 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    
-    UISegmentedControl *seg = [[UISegmentedControl alloc]init];
     [self setAutomaticallyAdjustsScrollViewInsets:NO];
+    
+    // 创建并初始化Segment
+    [self addSegmentControl];
+    
     CategoriesTimeViewController *timeVC = [[CategoriesTimeViewController alloc]init];
     timeVC.categorie = self.categorie;
-    [self setupViewControl:timeVC];  // 添加控制器
-    [self addSegmentControlWithSegment:seg Name:@"按时间排序" andViewControl:timeVC]; // 通过控制器创建Segment
+    [self setupViewControl:timeVC AndSegmentControlWithName:@"按时间排序"]; // 初始化控制器,并设置对应segment名称
     
     
     CategoriesShareViewController *share = [[CategoriesShareViewController alloc]init];
     share.categorie = self.categorie;
-    [self setupViewControl:share];  // 添加控制器
-    [self addSegmentControlWithSegment:seg Name:@"分享排名榜" andViewControl:share];// 通过控制器创建Segment
+    [self setupViewControl:share AndSegmentControlWithName:@"分享排名榜"];// 初始化控制器,并设置对应segment名称
     
    
 }
@@ -73,30 +73,35 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
-- (void)setupViewControl:(UIViewController *)Vc
+#pragma mark 初始化控制器,并设置对应segment名称
+- (void)setupViewControl:(UIViewController *)vc AndSegmentControlWithName:(NSString *)name
 {
-    
-    [self addChildViewController:Vc];
-    [self.view addSubview:Vc.view];
-    Vc.edgesForExtendedLayout = UIRectEdgeNone;
+    // 添加View
+    [self addChildViewController:vc];
+    [self.view addSubview:vc.view];
+
     //添加数组
-    [self.AllViews addObject:Vc.view];
+    [self.AllViews addObject:vc.view];
     if (self.AllViews.count >1) {
-        Vc.view.hidden = YES;
-    }else{
-        self.visibleView = Vc.view;
+        vc.view.hidden = YES;
+    }else{  // 第一个View
+        self.visibleView = vc.view;
     }
     //设置frame
-    Vc.view.frame = CGRectMake(0, 64+segmentH, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
-    NSLog(@"%@",Vc);
+    vc.view.frame = CGRectMake(0, 64+segmentH, CGRectGetWidth(self.view.frame), CGRectGetHeight(self.view.frame));
     
+    // 设置对应segment名称
+    [self.segmentedControl insertSegmentWithTitle:name atIndex:self.AllViews.count animated:YES];
+    self.segmentedControl.selectedSegmentIndex = 0;
 }
 #pragma mark segment
-- (void)addSegmentControlWithSegment:(UISegmentedControl *)seg Name:(NSString *)name andViewControl:(UIViewController *)vc
+- (void)addSegmentControl
 {
+    UISegmentedControl *seg = [[UISegmentedControl alloc]init];
+    
     seg.frame = CGRectMake(0, 64, CGRectGetWidth(self.view.frame), segmentH);
     seg.tintColor = coverViewColor;
+    
     [seg setBackgroundColor:BMcolorWithAlpha(255, 255, 255, 0.3)];
     
     //设置字体
@@ -106,23 +111,24 @@
     [seg setTitleTextAttributes:attributes forState:UIControlStateNormal];
     [seg setTitleTextAttributes:attributes forState:UIControlStateSelected];
     
-    
-    [seg insertSegmentWithTitle:name atIndex:self.AllViews.count animated:YES];
-    [seg addTarget:self action:@selector(segmentSelected) forControlEvents:UIControlEventValueChanged];
     [self.view addSubview:seg];
+    [seg addTarget:self action:@selector(segmentSelected) forControlEvents:UIControlEventValueChanged];
+    
+    
     self.segmentedControl = seg;
 }
+
 - (void)segmentSelected {
     UIView *viewToShow = self.AllViews[self.segmentedControl.selectedSegmentIndex];
     if (self.visibleView == viewToShow) {
         return;
     }
-    NSLog(@"%@",NSStringFromCGRect(viewToShow.frame));
     self.visibleView.hidden = YES;
     viewToShow.hidden = NO;
     self.visibleView = viewToShow;
 }
 
+#pragma mark 延时加载
 
 -(NSMutableArray *)AllViews
 {
