@@ -59,7 +59,7 @@
     [self.view addSubview:activityView];
     [activityView centerInSuperview];
     
-    
+    [self setupPlayer:nil];
     // 视频时长
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:url options:nil];
     [asset loadValuesAsynchronouslyForKeys:[NSArray arrayWithObject:@"duration"] completionHandler:^{
@@ -81,6 +81,11 @@
 
 - (void)setupAndStartPlaying:(NSURL*)url {
     dispatch_async(dispatch_get_main_queue(), ^{ //asset是子线程,返回主线程
+        
+        
+        self.player.delegate = nil;
+        [self.player removeFromSuperview];
+        self.player = nil;
         // 创建播放View
         [self setupPlayer:url];
         // 开始播放
